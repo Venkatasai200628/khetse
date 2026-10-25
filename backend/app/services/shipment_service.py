@@ -195,7 +195,10 @@ def create_shipment_from_orders(
     for stop in stops:
         stop.sequence = sequence_by_stop[stop.id]
     shipment.solver = solved.solver
-    shipment.route_distance_km = solved.total_distance_km
+    # Stops without coordinates (e.g. buyer drop-offs from a form that did not
+    # collect GPS) make the solver return 0 — store NULL so the UI shows an
+    # honest "unknown" instead of a fake 0 km.
+    shipment.route_distance_km = solved.total_distance_km or None
     shipment.route_data = {
         "stop_order": [str(sid) for sid in solved.order],
         "total_distance_km": solved.total_distance_km,
