@@ -1,0 +1,42 @@
+name: khetse
+description: "KhetSe — Seedha Khet Se Ghar Tak. Direct farm-to-home marketplace."
+publish_to: "none"
+
+version: 0.1.0+1
+
+environment:
+  sdk: ^3.13.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_localizations:
+    sdk: flutter
+  flutter_riverpod: ^2.6.1
+  go_router: ^14.6.2
+  dio: ^5.7.0
+  shared_preferences: ^2.3.2
+  intl: ^0.20.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+
+flutter:
+  uses-material-design: true
+  generate: true
+
+  assets:
+    - assets/fonts/
+
+  fonts:
+    - family: Inter
+      fonts:
+        - asset: assets/fonts/Inter.ttf
+    - family: NotoSans
+      fonts:
+        - asset: assets/fonts/NotoSans.ttf
+    - family: NotoSansTelugu
+      fonts:
+        - asset: assets/fonts/NotoSansTelugu.ttf

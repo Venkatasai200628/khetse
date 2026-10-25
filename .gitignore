@@ -1,0 +1,58 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+dist/
+build/
+
+# Environment & secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+kaggle.json
+
+# Databases / local data
+*.db
+*.sqlite3
+osrm-data/
+backend/media/
+
+# Flutter / Dart
+app/.dart_tool/
+app/.flutter-plugins
+app/.flutter-plugins-dependencies
+app/.packages
+app/.pub-cache/
+app/.pub/
+app/build/
+app/android/.gradle/
+app/android/local.properties
+app/android/key.properties
+app/*.jks
+app/.fvm/
+.pub-cache/
+.pub/
+/build/
+
+# IDE
+.idea/
+.vscode/
+*.iml
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/

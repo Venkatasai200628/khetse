@@ -1,0 +1,68 @@
+name: khetse
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: khetse
+      POSTGRES_PASSWORD: khetse
+      POSTGRES_DB: khetse
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U khetse -d khetse"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  # Full containerised stack (backend + infra): docker compose --profile full up
+  backend:
+    build: ./backend
+    profiles: ["full"]
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg2://khetse:khetse@db:5432/khetse
+      REDIS_URL: redis://redis:6379/0
+    ports:
+      - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+
+  # Optional self-hosted OSRM routing server (demo API is fine for most cases).
+  # First run: download an India .osm.pbf extract into ./osrm-data/india-latest.osm.pbf
+  # (e.g. from https://download.geofabrik.de/asia/india.html), then:
+  #   docker compose --profile routing run --rm osrm-preprocess
+  #   docker compose --profile routing up -d osrm
+  osrm-preprocess:
+    image: osrm/osrm-backend:latest
+    profiles: ["routing"]
+    volumes:
+      - ./osrm-data:/data
+    entrypoint: ["sh", "-c", "osrm-extract -p /opt/car.lua /data/india-latest.osm.pbf && osrm-contract -p /opt/car.lua /data/india-latest.osrm"]
+
+  osrm:
+    image: osrm/osrm-backend:latest
+    profiles: ["routing"]
+    volumes:
+      - ./osrm-data:/data
+    ports:
+      - "5000:5000"
+    command: osrm-routed --algorithm mld /data/india-latest.osrm
+
+volumes:
+  pgdata:
