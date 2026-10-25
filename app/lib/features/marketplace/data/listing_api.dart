@@ -55,7 +55,10 @@ class ListingApi {
     String qualityGrade = 'ungraded',
     String? description,
     DateTime? harvestDate,
+    DateTime? availableFrom,
   }) async {
+    String formatdate(DateTime d) =>
+        '${d.year.toString().padLeft(4, '0')}-${d.month.toString().padLeft(2, '0')}-${d.day.toString().padLeft(2, '0')}';
     final res = await guard<Response>(
       () => _dio.post('/listings', data: {
         'commodity_id': commodityId,
@@ -66,9 +69,8 @@ class ListingApi {
         'quality_grade': qualityGrade,
         if (description != null && description.isNotEmpty)
           'description': description,
-        if (harvestDate != null)
-          'harvest_date':
-              '${harvestDate.year.toString().padLeft(4, '0')}-${harvestDate.month.toString().padLeft(2, '0')}-${harvestDate.day.toString().padLeft(2, '0')}',
+        if (harvestDate != null) 'harvest_date': formatdate(harvestDate),
+        if (availableFrom != null) 'available_from': formatdate(availableFrom),
       }),
     );
     throwIfError(res);

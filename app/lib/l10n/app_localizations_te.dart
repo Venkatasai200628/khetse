@@ -363,6 +363,338 @@ class AppLocalizationsTe extends AppLocalizations {
       'షిప్‌మెంట్ మరియు డిస్పాచ్ ఎండ్‌పాయింట్‌లు తర్వాతి దశ (ANALYSIS.md §9, దశ 4). ఈ డాష్‌బోర్డ్ మీ నిజమైన ప్రొఫైల్‌ను చూపుతుంది, ఆ ఎండ్‌పాయింట్‌లు వచ్చిన క్షణమే ట్రిప్‌లను చూపుతుంది.';
 
   @override
+  String get shipmentDetailTitle => 'డెలివరీ రన్';
+
+  @override
+  String get shipmentStarted => 'రన్ ప్రారంభమైంది — సురక్షితంగా వెళ్ళండి!';
+
+  @override
+  String get stopCompleted => 'స్టాప్ పూర్తయింది';
+
+  @override
+  String get shipmentStartRun => 'రన్ ప్రారంభించండి';
+
+  @override
+  String get shipmentStopsTitle => 'క్రమంలో స్టాప్‌లు';
+
+  @override
+  String shipmentStopCount(int count) {
+    return '$count స్టాప్‌లు';
+  }
+
+  @override
+  String shipmentPendingCount(int count) {
+    return '$count మిగిలిపోయాయి';
+  }
+
+  @override
+  String get shipmentDistance => 'దూరం';
+
+  @override
+  String get shipmentReadOnlyNote =>
+      'మీరు ఈ రన్‌ను పంపించారు. కేటాయించిన డ్రైవర్ ప్రతి స్టాప్‌ను పూర్తి చేస్తారు — స్టాప్‌లు మీ కోసం చదవడానికి మాత్రమే.';
+
+  @override
+  String get shipmentCratesTitle => 'క్రేట్ మానిఫెస్ట్';
+
+  @override
+  String get shipmentNoCrates => 'ఈ రన్ కోసం క్రేట్ కోడ్‌లు అందలేదు.';
+
+  @override
+  String get stopPickup => 'సేకరణ';
+
+  @override
+  String get stopDelivery => 'డెలివరీ';
+
+  @override
+  String get stopComplete => 'స్టాప్ పూర్తి చేయండి';
+
+  @override
+  String get stopReportProblem => 'సమస్య నివేదించండి';
+
+  @override
+  String get stopCompleteTitle => 'ఈ స్టాప్‌ను పూర్తి చేయండి';
+
+  @override
+  String get stopMethodQr => 'QR స్కాన్ (డెమో — టోకెన్ అతికించండి)';
+
+  @override
+  String get stopMethodCode => 'క్రేట్ కోడ్ నమోదు';
+
+  @override
+  String get stopScanTokenLabel => 'స్కాన్ చేసిన టోకెన్';
+
+  @override
+  String get stopScanTokenHint => 'ఉదా. KR-2026-0042';
+
+  @override
+  String get stopCrateCodeLabel => 'క్రేట్ కోడ్';
+
+  @override
+  String get stopCrateCodeHint => 'ఉదా. CR-1007';
+
+  @override
+  String get cancelLabel => 'రద్దు చేయండి';
+
+  @override
+  String get stopConfirmHandoff => 'అప్పగింత నిర్ధారించండి';
+
+  @override
+  String get stopFailTitle => 'సమస్య నివేదించండి';
+
+  @override
+  String get stopFailReason => 'ఏమి తప్పు జరిగింది?';
+
+  @override
+  String get stopFailConfirm => 'నివేదించండి';
+
+  @override
+  String get shipmentLoadFailed => 'ఈ డెలివరీ రన్ లోడ్ కాలేదు.';
+
+  @override
+  String get fpoDispatchTitle => 'డిస్పాచ్';
+
+  @override
+  String get fpoDispatchSubtitle =>
+      'నిర్ధారించబడిన సభ్యుల ఆర్డర్‌లను ఒకే డెలివరీ రన్‌గా ఏర్పాటు చేయండి, ఐచ్ఛిక డ్రైవర్‌తో.';
+
+  @override
+  String get fpoSelectOrders => 'నిర్ధారించబడిన సభ్యుల ఆర్డర్లు';
+
+  @override
+  String get fpoNoConfirmedOrders =>
+      'ఇప్పుడు పంపించడానికి నిర్ధారించబడిన ఆర్డర్లు లేవు. కొనుగోలుదారులు చెల్లింపు నిర్ధారించిన తర్వాత ఆర్డర్లు ఇక్కడ కనిపిస్తాయి.';
+
+  @override
+  String get fpoDriverOptional => 'డ్రైవర్‌ను కేటాయించండి (ఐచ్ఛికం)';
+
+  @override
+  String get fpoDriverUnassigned => 'ఇంకా డ్రైవర్ లేరు';
+
+  @override
+  String get fpoCreateRun => 'రన్ సృష్టించండి';
+
+  @override
+  String fpoCreateRunSelected(int count) {
+    return '$count ఆర్డర్లతో రన్ సృష్టించండి';
+  }
+
+  @override
+  String get fpoRunCreated => 'డెలివరీ రన్ సృష్టించబడింది';
+
+  @override
+  String get navDispatch => 'డిస్పాచ్';
+
+  @override
+  String get navMarket => 'మార్కెట్';
+
+  @override
+  String get marketTitle => 'మార్కెట్ ధరలు';
+
+  @override
+  String get marketSubtitle =>
+      'ఇటీవలి మార్కెట్ పరిశీలనల నుండి AI ధర మార్గదర్శకత్వం — మూలాధారాలతో పారదర్శక మోడల్, ఎప్పుడూ నల్ల పెట్టె కాదు.';
+
+  @override
+  String get marketCommodity => 'పంట';
+
+  @override
+  String get marketDistrict => 'జిల్లా (ఐచ్ఛికం)';
+
+  @override
+  String get marketDistrictHint => 'ఉదా. రంగారెడ్డి';
+
+  @override
+  String get marketGetPrice => 'ధర తెలుసుకోండి';
+
+  @override
+  String marketRangeLabel(String unit) {
+    return 'సిఫార్సు చేసిన $unit ధర (కనిష్ట – సాధారణ – గరిష్ట)';
+  }
+
+  @override
+  String marketPerUnit(String unit) {
+    return 'ప్రతి $unit కి';
+  }
+
+  @override
+  String get marketPerQuintal => 'ప్రతి క్వింటాల్ కి';
+
+  @override
+  String get marketPerKgPrefix => 'దీని అర్థం సుమారు';
+
+  @override
+  String get marketBenchmark => 'బెంచ్‌మార్క్ మార్కెట్';
+
+  @override
+  String get marketObserved => 'గమనించిన తేదీ';
+
+  @override
+  String get marketSource => 'మూలం';
+
+  @override
+  String get marketWhyThisRange => 'ఈ పరిధి ఎందుకు?';
+
+  @override
+  String get marketNoDataTitle => 'ఈ ఎంపికకు ఇంకా డేటా లేదు';
+
+  @override
+  String get marketNoDataMessage =>
+      'ఈ పంట మరియు జిల్లాకు మోడల్‌కు ఇటీవలి పరిశీలనలు లేవు. వేరే జిల్లాను ప్రయత్నించండి, లేదా తర్వాత మళ్లీ చూడండి.';
+
+  @override
+  String get marketPickCommodity => 'పంటను ఎంచుకోండి';
+
+  @override
+  String get marketPickCommodityMessage =>
+      'పంటను (ఐచ్ఛికంగా జిల్లాను) ఎంచుకుని, సిఫార్సు చేసిన ధర పరిధిని పొందండి.';
+
+  @override
+  String get retryLabel => 'మళ్లీ ప్రయత్నించండి';
+
+  @override
+  String get voiceTitle => 'మాట్లాడి అమ్మండి';
+
+  @override
+  String get voiceEntryButton => 'మాట్లాడి అమ్మండి';
+
+  @override
+  String get voiceSubtitle =>
+      'మీరు ఏమి పండించారు, ఏ ధరకు అని చెప్పండి — మేము లిస్టింగ్ రూపొందిస్తాము, మీరు నిర్ధారించండి.';
+
+  @override
+  String get voiceDemoBanner =>
+      'డెమో మోడ్: ప్రసంగం అనుకరణగా ఉంటుంది — నమూనా వాక్యాన్ని ఎంచుకోండి లేదా మీరు చెప్పేది టైప్ చేయండి.';
+
+  @override
+  String get voiceSampleLabel => 'నమూనా వాక్యాలు';
+
+  @override
+  String get voiceSampleEn => '10 kg tomato at 20 rupees per kg';
+
+  @override
+  String get voiceSampleTe => '5 క్వింటాల్ టమాటా రూ 2000';
+
+  @override
+  String get voiceFieldLabel => 'మీరు ఏమి అనుకుంటున్నారు?';
+
+  @override
+  String get voiceHint => 'ఉదా. 10 కిలోల టమాటా కిలోకి 20 రూపాయలు';
+
+  @override
+  String get voiceDraftButton => 'నా లిస్టింగ్ రూపొందించండి';
+
+  @override
+  String get voiceHeardYouSay => 'మీరు అని అని విన్నాము';
+
+  @override
+  String get voiceNeedsCheck => 'దయచేసి సరిచూడండి';
+
+  @override
+  String get voiceConfirmTitle => 'మీ లిస్టింగ్‌ను నిర్ధారించండి';
+
+  @override
+  String get voiceConfirmNote =>
+      'హైలైట్ చేసిన ప్రతి ఫీల్డ్‌ను సరిచూడండి — సేకరణ ఎప్పుడూ ఖచ్చితంగా ఉండదు. మీరు నిర్ధారించే వరకు ఏమీ ప్రచురించబడదు.';
+
+  @override
+  String get voiceChooseCommodity => 'పంటను ఎంచుకోండి';
+
+  @override
+  String get voiceAvailableFrom => 'ఇక్కడి నుండి అందుబాటులో';
+
+  @override
+  String get voicePublished => 'లిస్టింగ్ ప్రచురించబడింది';
+
+  @override
+  String get navDemand => 'డిమాండ్';
+
+  @override
+  String get rfqTitle => 'వ్యాపార డిమాండ్';
+
+  @override
+  String get rfqSubtitle =>
+      'మీకు కావాల్సినది పోస్ట్ చేయండి; రైతులు కోట్ చేస్తారు, మీరు మంచి ఆఫర్‌ను అంగీకరించండి.';
+
+  @override
+  String get rfqCreateTitle => 'కొత్త అభ్యర్థన';
+
+  @override
+  String rfqMaxPriceLabel(String unit) {
+    return 'ప్రతి $unit కి గరిష్ట ధర (₹)';
+  }
+
+  @override
+  String get rfqEnterMaxPrice =>
+      'మీరు చెల్లించడానికి సిద్ధంగా ఉన్న గరిష్ట ధరను నమోదు చేయండి';
+
+  @override
+  String get rfqNeededBy => 'కావాల్సిన తేదీ';
+
+  @override
+  String get rfqNeededByEmpty => 'తేదీని ఎంచుకోండి';
+
+  @override
+  String get rfqSubmit => 'అభ్యర్థన పోస్ట్ చేయండి';
+
+  @override
+  String get rfqPosted =>
+      'అభ్యర్థన పోస్ట్ అయింది — రైతులు ఇప్పుడు కోట్ చేయవచ్చు';
+
+  @override
+  String get rfqMyRequests => 'నా అభ్యర్థనలు';
+
+  @override
+  String get rfqNoRequestsTitle => 'ఇంకా అభ్యర్థనలు లేవు';
+
+  @override
+  String get rfqNoRequestsMessage =>
+      'పైన మీ మొదటి అభ్యర్థనను పోస్ట్ చేయండి, మీ చుట్టుపక్కల రైతులు కోట్ చేయడం ప్రారంభించవచ్చు.';
+
+  @override
+  String rfqOffersCount(int count) {
+    return '$count ఆఫర్లు';
+  }
+
+  @override
+  String get rfqNoOffers =>
+      'ఇంకా ఆఫర్లు లేవు — రైతులకు ఈ అభ్యర్థన వారి ఓపెన్ డిమాండ్ ఫీడ్‌లో కనిపిస్తుంది.';
+
+  @override
+  String get rfqAccept => 'అంగీకరించండి';
+
+  @override
+  String get rfqOpenDemand => 'ఓపెన్ డిమాండ్';
+
+  @override
+  String get rfqOpenDemandSubtitle =>
+      'వ్యాపారులు పంటల కోసం వెతుకుతున్నారు — అభ్యర్థనపై మీ ధరను కోట్ చేయండి.';
+
+  @override
+  String get rfqNoOpenDemandTitle => 'ఓపెన్ అభ్యర్థనలు లేవు';
+
+  @override
+  String get rfqNoOpenDemandMessage =>
+      'వ్యాపారం ఏమి కావాలో పోస్ట్ చేసినప్పుడు, మీరు కోట్ చేయడానికి అది ఇక్కడ కనిపిస్తుంది.';
+
+  @override
+  String get rfqQuote => 'కోట్';
+
+  @override
+  String get rfqQuoteTitle => 'ఈ అభ్యర్థనపై కోట్ చేయండి';
+
+  @override
+  String rfqYourPriceLabel(String unit) {
+    return 'ప్రతి $unit కి మీ ధర (₹)';
+  }
+
+  @override
+  String get rfqSubmitQuote => 'కోట్ పంపండి';
+
+  @override
+  String get rfqQuoted => 'కోట్ పంపబడింది';
+
+  @override
   String get fpoOrdersTitle => 'సభ్యుల ఆర్డర్లు';
 
   @override

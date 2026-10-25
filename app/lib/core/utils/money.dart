@@ -19,20 +19,18 @@ String formatPaise(int paise, {bool withSymbol = true}) {
   return withSymbol ? '$sign₹$value' : sign + value;
 }
 
-/// Indian grouping: last 3 digits, then groups of 2 (1,23,45,678).
+/// Indian grouping: first group of 1-2 digits, then groups of 2
+/// (1,23,45,678). The first group is 1 digit only when the remaining
+/// digits are odd in count, e.g. `1234` → `1,234`.
 String _groupIndian(String digits) {
   if (digits.length <= 3) return digits;
   final last3 = digits.substring(digits.length - 3);
   final rest = digits.substring(0, digits.length - 3);
-  final buffer = StringBuffer();
-  final remainder = rest.length % 2;
-  if (remainder == 1) {
-    buffer.write(rest[0]);
+  final firstLen = rest.length % 2 == 0 ? 2 : 1;
+  final buffer = StringBuffer()..write(rest.substring(0, firstLen));
+  for (var i = firstLen; i < rest.length; i += 2) {
     buffer.write(',');
-  }
-  for (var i = remainder; i < rest.length; i += 2) {
     buffer.write(rest.substring(i, i + 2));
-    if (i + 2 < rest.length) buffer.write(',');
   }
   return '$buffer,$last3';
 }

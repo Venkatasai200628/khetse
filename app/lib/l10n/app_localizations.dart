@@ -758,6 +758,606 @@ abstract class AppLocalizations {
   /// **'Shipment and dispatch endpoints are the next build phase (ANALYSIS.md §9, Phase 4). This dashboard shows your real profile and will pick up trips the moment those endpoints ship.'**
   String get driverPhaseNote;
 
+  /// No description provided for @shipmentDetailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery run'**
+  String get shipmentDetailTitle;
+
+  /// No description provided for @shipmentStarted.
+  ///
+  /// In en, this message translates to:
+  /// **'Run started — safe driving!'**
+  String get shipmentStarted;
+
+  /// No description provided for @stopCompleted.
+  ///
+  /// In en, this message translates to:
+  /// **'Stop completed'**
+  String get stopCompleted;
+
+  /// No description provided for @shipmentStartRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Start run'**
+  String get shipmentStartRun;
+
+  /// No description provided for @shipmentStopsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Stops, in order'**
+  String get shipmentStopsTitle;
+
+  /// No description provided for @shipmentStopCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} stops'**
+  String shipmentStopCount(int count);
+
+  /// No description provided for @shipmentPendingCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} pending'**
+  String shipmentPendingCount(int count);
+
+  /// No description provided for @shipmentDistance.
+  ///
+  /// In en, this message translates to:
+  /// **'Distance'**
+  String get shipmentDistance;
+
+  /// No description provided for @shipmentReadOnlyNote.
+  ///
+  /// In en, this message translates to:
+  /// **'You dispatched this run. The assigned driver completes each stop — stops are read-only for you.'**
+  String get shipmentReadOnlyNote;
+
+  /// No description provided for @shipmentCratesTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Crate manifest'**
+  String get shipmentCratesTitle;
+
+  /// No description provided for @shipmentNoCrates.
+  ///
+  /// In en, this message translates to:
+  /// **'No crate codes were returned for this run.'**
+  String get shipmentNoCrates;
+
+  /// No description provided for @stopPickup.
+  ///
+  /// In en, this message translates to:
+  /// **'PICKUP'**
+  String get stopPickup;
+
+  /// No description provided for @stopDelivery.
+  ///
+  /// In en, this message translates to:
+  /// **'DELIVERY'**
+  String get stopDelivery;
+
+  /// No description provided for @stopComplete.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete stop'**
+  String get stopComplete;
+
+  /// No description provided for @stopReportProblem.
+  ///
+  /// In en, this message translates to:
+  /// **'Report problem'**
+  String get stopReportProblem;
+
+  /// No description provided for @stopCompleteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Complete this stop'**
+  String get stopCompleteTitle;
+
+  /// No description provided for @stopMethodQr.
+  ///
+  /// In en, this message translates to:
+  /// **'Scan QR (demo — paste the token)'**
+  String get stopMethodQr;
+
+  /// No description provided for @stopMethodCode.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter crate code'**
+  String get stopMethodCode;
+
+  /// No description provided for @stopScanTokenLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Scanned token'**
+  String get stopScanTokenLabel;
+
+  /// No description provided for @stopScanTokenHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. KR-2026-0042'**
+  String get stopScanTokenHint;
+
+  /// No description provided for @stopCrateCodeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Crate code'**
+  String get stopCrateCodeLabel;
+
+  /// No description provided for @stopCrateCodeHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. CR-1007'**
+  String get stopCrateCodeHint;
+
+  /// No description provided for @cancelLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Cancel'**
+  String get cancelLabel;
+
+  /// No description provided for @stopConfirmHandoff.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm handoff'**
+  String get stopConfirmHandoff;
+
+  /// No description provided for @stopFailTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Report a problem'**
+  String get stopFailTitle;
+
+  /// No description provided for @stopFailReason.
+  ///
+  /// In en, this message translates to:
+  /// **'What went wrong?'**
+  String get stopFailReason;
+
+  /// No description provided for @stopFailConfirm.
+  ///
+  /// In en, this message translates to:
+  /// **'Report'**
+  String get stopFailConfirm;
+
+  /// No description provided for @shipmentLoadFailed.
+  ///
+  /// In en, this message translates to:
+  /// **'This delivery run could not be loaded.'**
+  String get shipmentLoadFailed;
+
+  /// No description provided for @fpoDispatchTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Dispatch'**
+  String get fpoDispatchTitle;
+
+  /// No description provided for @fpoDispatchSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Group confirmed member orders into a shared delivery run with an optional driver.'**
+  String get fpoDispatchSubtitle;
+
+  /// No description provided for @fpoSelectOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirmed member orders'**
+  String get fpoSelectOrders;
+
+  /// No description provided for @fpoNoConfirmedOrders.
+  ///
+  /// In en, this message translates to:
+  /// **'No confirmed orders to dispatch right now. Orders appear here once buyers confirm payment.'**
+  String get fpoNoConfirmedOrders;
+
+  /// No description provided for @fpoDriverOptional.
+  ///
+  /// In en, this message translates to:
+  /// **'Assign driver (optional)'**
+  String get fpoDriverOptional;
+
+  /// No description provided for @fpoDriverUnassigned.
+  ///
+  /// In en, this message translates to:
+  /// **'No driver yet'**
+  String get fpoDriverUnassigned;
+
+  /// No description provided for @fpoCreateRun.
+  ///
+  /// In en, this message translates to:
+  /// **'Create run'**
+  String get fpoCreateRun;
+
+  /// No description provided for @fpoCreateRunSelected.
+  ///
+  /// In en, this message translates to:
+  /// **'Create run with {count} orders'**
+  String fpoCreateRunSelected(int count);
+
+  /// No description provided for @fpoRunCreated.
+  ///
+  /// In en, this message translates to:
+  /// **'Delivery run created'**
+  String get fpoRunCreated;
+
+  /// No description provided for @navDispatch.
+  ///
+  /// In en, this message translates to:
+  /// **'Dispatch'**
+  String get navDispatch;
+
+  /// No description provided for @navMarket.
+  ///
+  /// In en, this message translates to:
+  /// **'Market'**
+  String get navMarket;
+
+  /// No description provided for @marketTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Market prices'**
+  String get marketTitle;
+
+  /// No description provided for @marketSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'AI price guidance from recent market observations — a transparent model with its provenance shown, never a black box.'**
+  String get marketSubtitle;
+
+  /// No description provided for @marketCommodity.
+  ///
+  /// In en, this message translates to:
+  /// **'Commodity'**
+  String get marketCommodity;
+
+  /// No description provided for @marketDistrict.
+  ///
+  /// In en, this message translates to:
+  /// **'District (optional)'**
+  String get marketDistrict;
+
+  /// No description provided for @marketDistrictHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. Rangareddy'**
+  String get marketDistrictHint;
+
+  /// No description provided for @marketGetPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Get price'**
+  String get marketGetPrice;
+
+  /// No description provided for @marketRangeLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Recommended {unit} price (min – typical – max)'**
+  String marketRangeLabel(String unit);
+
+  /// No description provided for @marketPerUnit.
+  ///
+  /// In en, this message translates to:
+  /// **'per {unit}'**
+  String marketPerUnit(String unit);
+
+  /// No description provided for @marketPerQuintal.
+  ///
+  /// In en, this message translates to:
+  /// **'per quintal'**
+  String get marketPerQuintal;
+
+  /// No description provided for @marketPerKgPrefix.
+  ///
+  /// In en, this message translates to:
+  /// **'That is about'**
+  String get marketPerKgPrefix;
+
+  /// No description provided for @marketBenchmark.
+  ///
+  /// In en, this message translates to:
+  /// **'Benchmark market'**
+  String get marketBenchmark;
+
+  /// No description provided for @marketObserved.
+  ///
+  /// In en, this message translates to:
+  /// **'Observed on'**
+  String get marketObserved;
+
+  /// No description provided for @marketSource.
+  ///
+  /// In en, this message translates to:
+  /// **'Source'**
+  String get marketSource;
+
+  /// No description provided for @marketWhyThisRange.
+  ///
+  /// In en, this message translates to:
+  /// **'Why this range?'**
+  String get marketWhyThisRange;
+
+  /// No description provided for @marketNoDataTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No data for this selection yet'**
+  String get marketNoDataTitle;
+
+  /// No description provided for @marketNoDataMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'The model has no recent observations for this commodity and district. Try another district, or check back after the next market run.'**
+  String get marketNoDataMessage;
+
+  /// No description provided for @marketPickCommodity.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a commodity'**
+  String get marketPickCommodity;
+
+  /// No description provided for @marketPickCommodityMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose a crop (and optionally a district), then get the recommended price range.'**
+  String get marketPickCommodityMessage;
+
+  /// No description provided for @retryLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Retry'**
+  String get retryLabel;
+
+  /// No description provided for @voiceTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak to sell'**
+  String get voiceTitle;
+
+  /// No description provided for @voiceEntryButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Speak to Sell'**
+  String get voiceEntryButton;
+
+  /// No description provided for @voiceSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Say what you harvested and at what price — we draft the listing, you confirm it.'**
+  String get voiceSubtitle;
+
+  /// No description provided for @voiceDemoBanner.
+  ///
+  /// In en, this message translates to:
+  /// **'Demo mode: speech is simulated — pick a sample phrase or type what you would say.'**
+  String get voiceDemoBanner;
+
+  /// No description provided for @voiceSampleLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Sample phrases'**
+  String get voiceSampleLabel;
+
+  /// No description provided for @voiceSampleEn.
+  ///
+  /// In en, this message translates to:
+  /// **'10 kg tomato at 20 rupees per kg'**
+  String get voiceSampleEn;
+
+  /// No description provided for @voiceSampleTe.
+  ///
+  /// In en, this message translates to:
+  /// **'5 క్వింటాల్ టమాటా రూ 2000'**
+  String get voiceSampleTe;
+
+  /// No description provided for @voiceFieldLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'What would you say?'**
+  String get voiceFieldLabel;
+
+  /// No description provided for @voiceHint.
+  ///
+  /// In en, this message translates to:
+  /// **'e.g. 10 kg tomato at 20 rupees per kg'**
+  String get voiceHint;
+
+  /// No description provided for @voiceDraftButton.
+  ///
+  /// In en, this message translates to:
+  /// **'Draft my listing'**
+  String get voiceDraftButton;
+
+  /// No description provided for @voiceHeardYouSay.
+  ///
+  /// In en, this message translates to:
+  /// **'Heard you say'**
+  String get voiceHeardYouSay;
+
+  /// No description provided for @voiceNeedsCheck.
+  ///
+  /// In en, this message translates to:
+  /// **'please check'**
+  String get voiceNeedsCheck;
+
+  /// No description provided for @voiceConfirmTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Confirm your listing'**
+  String get voiceConfirmTitle;
+
+  /// No description provided for @voiceConfirmNote.
+  ///
+  /// In en, this message translates to:
+  /// **'Check every highlighted field — the extraction is not always sure. Nothing is published until you confirm.'**
+  String get voiceConfirmNote;
+
+  /// No description provided for @voiceChooseCommodity.
+  ///
+  /// In en, this message translates to:
+  /// **'Choose the crop'**
+  String get voiceChooseCommodity;
+
+  /// No description provided for @voiceAvailableFrom.
+  ///
+  /// In en, this message translates to:
+  /// **'Available from'**
+  String get voiceAvailableFrom;
+
+  /// No description provided for @voicePublished.
+  ///
+  /// In en, this message translates to:
+  /// **'Listing published'**
+  String get voicePublished;
+
+  /// No description provided for @navDemand.
+  ///
+  /// In en, this message translates to:
+  /// **'Demand'**
+  String get navDemand;
+
+  /// No description provided for @rfqTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Business demand'**
+  String get rfqTitle;
+
+  /// No description provided for @rfqSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Post what you need; farmers quote against your request, and you accept the best offer.'**
+  String get rfqSubtitle;
+
+  /// No description provided for @rfqCreateTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'New request'**
+  String get rfqCreateTitle;
+
+  /// No description provided for @rfqMaxPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Max price per {unit} (₹)'**
+  String rfqMaxPriceLabel(String unit);
+
+  /// No description provided for @rfqEnterMaxPrice.
+  ///
+  /// In en, this message translates to:
+  /// **'Enter the maximum price you will pay'**
+  String get rfqEnterMaxPrice;
+
+  /// No description provided for @rfqNeededBy.
+  ///
+  /// In en, this message translates to:
+  /// **'Needed by'**
+  String get rfqNeededBy;
+
+  /// No description provided for @rfqNeededByEmpty.
+  ///
+  /// In en, this message translates to:
+  /// **'Pick a date'**
+  String get rfqNeededByEmpty;
+
+  /// No description provided for @rfqSubmit.
+  ///
+  /// In en, this message translates to:
+  /// **'Post request'**
+  String get rfqSubmit;
+
+  /// No description provided for @rfqPosted.
+  ///
+  /// In en, this message translates to:
+  /// **'Request posted — farmers can quote now'**
+  String get rfqPosted;
+
+  /// No description provided for @rfqMyRequests.
+  ///
+  /// In en, this message translates to:
+  /// **'My requests'**
+  String get rfqMyRequests;
+
+  /// No description provided for @rfqNoRequestsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No requests yet'**
+  String get rfqNoRequestsTitle;
+
+  /// No description provided for @rfqNoRequestsMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'Post your first request above and farmers around you can start quoting.'**
+  String get rfqNoRequestsMessage;
+
+  /// No description provided for @rfqOffersCount.
+  ///
+  /// In en, this message translates to:
+  /// **'{count} offers'**
+  String rfqOffersCount(int count);
+
+  /// No description provided for @rfqNoOffers.
+  ///
+  /// In en, this message translates to:
+  /// **'No offers yet — farmers see this request in their Open demand feed.'**
+  String get rfqNoOffers;
+
+  /// No description provided for @rfqAccept.
+  ///
+  /// In en, this message translates to:
+  /// **'Accept'**
+  String get rfqAccept;
+
+  /// No description provided for @rfqOpenDemand.
+  ///
+  /// In en, this message translates to:
+  /// **'Open demand'**
+  String get rfqOpenDemand;
+
+  /// No description provided for @rfqOpenDemandSubtitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Businesses are looking for produce — quote your price against a request.'**
+  String get rfqOpenDemandSubtitle;
+
+  /// No description provided for @rfqNoOpenDemandTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'No open requests'**
+  String get rfqNoOpenDemandTitle;
+
+  /// No description provided for @rfqNoOpenDemandMessage.
+  ///
+  /// In en, this message translates to:
+  /// **'When a business posts what it needs, it shows up here for you to quote.'**
+  String get rfqNoOpenDemandMessage;
+
+  /// No description provided for @rfqQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'Quote'**
+  String get rfqQuote;
+
+  /// No description provided for @rfqQuoteTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Quote this request'**
+  String get rfqQuoteTitle;
+
+  /// No description provided for @rfqYourPriceLabel.
+  ///
+  /// In en, this message translates to:
+  /// **'Your price per {unit} (₹)'**
+  String rfqYourPriceLabel(String unit);
+
+  /// No description provided for @rfqSubmitQuote.
+  ///
+  /// In en, this message translates to:
+  /// **'Send quote'**
+  String get rfqSubmitQuote;
+
+  /// No description provided for @rfqQuoted.
+  ///
+  /// In en, this message translates to:
+  /// **'Quote sent'**
+  String get rfqQuoted;
+
   /// No description provided for @fpoOrdersTitle.
   ///
   /// In en, this message translates to:

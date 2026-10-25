@@ -7,6 +7,7 @@ import '../../../core/widgets/empty_state.dart';
 import '../../auth/controllers/auth_controller.dart';
 import '../../marketplace/data/providers.dart';
 import '../../marketplace/widgets/order_card.dart';
+import '../../rfq/screens/open_demand_section.dart';
 import '../../../core/theme/app_colors.dart';
 import '../../../core/widgets/error_view.dart';
 import '../../../core/widgets/misc.dart';
@@ -15,6 +16,8 @@ import '../../../core/widgets/skeleton.dart';
 
 /// Farmer dashboard — every number comes from live API responses:
 /// listings from GET /listings/mine and orders from GET /orders/farmer.
+/// The big "Speak to sell" button opens the voice listing flow and the
+/// "Open demand" section quotes real business RFQs.
 class FarmerHomeTab extends ConsumerWidget {
   const FarmerHomeTab({super.key});
 
@@ -69,13 +72,30 @@ class FarmerHomeTab extends ConsumerWidget {
             ),
           ),
           const SizedBox(height: 24),
-          FilledButton.icon(
+          // Big entry button for the voice listing flow.
+          SizedBox(
+            height: 56,
+            child: FilledButton.icon(
+              style: FilledButton.styleFrom(
+                backgroundColor: AppColors.harvest,
+                foregroundColor: Colors.white,
+                textStyle: const TextStyle(
+                    fontSize: 16.5, fontWeight: FontWeight.w800),
+              ),
+              onPressed: () => context.push('/farmer/voice'),
+              icon: const Icon(Icons.mic_rounded, size: 26),
+              label: Text(t.voiceEntryButton),
+            ),
+          ),
+          const SizedBox(height: 12),
+          OutlinedButton.icon(
             onPressed: () => context.push('/farmer/listing/new'),
             icon: const Icon(Icons.add_rounded, size: 22),
             label: Text(t.createListing),
           ),
           const SizedBox(height: 24),
           SectionHeader(t.recentOrders),
+          const SizedBox(height: 12),
           ordersAsync.when(
             loading: () => const SkeletonList(itemCount: 3, itemHeight: 92),
             error: (e, _) => ErrorView(
@@ -102,6 +122,8 @@ class FarmerHomeTab extends ConsumerWidget {
               );
             },
           ),
+          const SizedBox(height: 24),
+          const OpenDemandSection(),
         ],
       ),
     );

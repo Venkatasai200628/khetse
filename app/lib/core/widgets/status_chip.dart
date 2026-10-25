@@ -76,6 +76,40 @@ class StatusChip extends StatelessWidget {
     }
   }
 
+  factory StatusChip.forShipmentStatus(String status) {
+    switch (status.toLowerCase()) {
+      case 'draft':
+      case 'ready':
+      case 'scheduled':
+        return const StatusChip(label: 'Ready', tone: StatusTone.warning);
+      case 'in_transit':
+      case 'in progress':
+        return const StatusChip(label: 'In transit', tone: StatusTone.info);
+      case 'completed':
+      case 'delivered':
+        return const StatusChip(label: 'Completed', tone: StatusTone.success);
+      case 'failed':
+        return const StatusChip(label: 'Failed', tone: StatusTone.danger);
+      case 'cancelled':
+        return const StatusChip(label: 'Cancelled', tone: StatusTone.neutral);
+      default:
+        return StatusChip(label: status, tone: StatusTone.neutral);
+    }
+  }
+
+  factory StatusChip.forStopStatus(String status) {
+    switch (status.toLowerCase()) {
+      case 'completed':
+        return const StatusChip(label: 'Done', tone: StatusTone.success);
+      case 'failed':
+        return const StatusChip(label: 'Failed', tone: StatusTone.danger);
+      case 'skipped':
+        return const StatusChip(label: 'Skipped', tone: StatusTone.neutral);
+      default:
+        return const StatusChip(label: 'Pending', tone: StatusTone.warning);
+    }
+  }
+
   final String label;
   final StatusTone tone;
 

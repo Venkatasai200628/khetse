@@ -47,10 +47,14 @@ class OrderApi {
   }
 
   /// GET /orders/farmer — orders containing this farmer's (or FPO members')
-  /// listings.
-  Future<OrderPage> farmerOrders({int pageSize = 20}) async {
+  /// listings. Optional [status] filter (e.g. 'confirmed') is used by the
+  /// FPO dispatch flow to pick dispatchable orders.
+  Future<OrderPage> farmerOrders({String? status, int pageSize = 20}) async {
     final res = await guard<Response>(
-      () => _dio.get('/orders/farmer', queryParameters: {'page_size': pageSize}),
+      () => _dio.get('/orders/farmer', queryParameters: {
+        if (status != null && status.isNotEmpty) 'status': status,
+        'page_size': pageSize,
+      }),
     );
     throwIfError(res);
     return OrderPage.fromJson(res.data as Map<String, dynamic>);

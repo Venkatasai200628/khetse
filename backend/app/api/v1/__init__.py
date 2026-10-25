@@ -15,6 +15,9 @@ from app.api.v1 import (
     orders,
     payments,
     reviews,
+    rfq,
+    shipments,
+    voice,
 )
 
 router = APIRouter()
@@ -31,6 +34,9 @@ router.include_router(market.forecasts_router)
 router.include_router(notifications.router)
 router.include_router(grievances.router)
 router.include_router(reviews.router)
+router.include_router(shipments.router)
+router.include_router(voice.router)
+router.include_router(rfq.router)
 
 # Root-level health for container orchestrators, sharing the same handler.
 root_health_router = APIRouter(tags=["health"])

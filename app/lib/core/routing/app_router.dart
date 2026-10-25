@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 
@@ -16,8 +16,12 @@ import '../../features/driver/driver_shell.dart';
 import '../../features/farmer/farmer_shell.dart';
 import '../../features/farmer/screens/create_listing_screen.dart';
 import '../../features/fpo/fpo_shell.dart';
+import '../../features/market/screens/market_screen.dart';
 import '../../features/payments/screens/payment_screen.dart';
+import '../../features/shipments/screens/shipment_detail_screen.dart';
 import '../../features/shared/order_detail_screen.dart';
+import '../../features/voice/screens/voice_listing_screen.dart';
+import '../../l10n/app_localizations.dart';
 
 const _publicRoutes = {'/welcome', '/login', '/language', '/register'};
 
@@ -79,6 +83,10 @@ final appRouterProvider = Provider<GoRouter>((ref) {
             path: 'listing/new',
             builder: (_, _) => const CreateListingScreen(),
           ),
+          GoRoute(
+            path: 'voice',
+            builder: (_, _) => const VoiceListingScreen(),
+          ),
         ],
       ),
       GoRoute(
@@ -119,6 +127,31 @@ final appRouterProvider = Provider<GoRouter>((ref) {
         path: '/checkout',
         builder: (_, _) => const CheckoutScreen(),
       ),
+      GoRoute(
+        path: '/market',
+        builder: (_, _) => const _MarketPage(),
+      ),
+      GoRoute(
+        path: '/shipment/:id',
+        builder: (_, state) => ShipmentDetailScreen(
+          shipmentId: state.pathParameters['id']!,
+          readOnly: state.uri.queryParameters['readonly'] == '1',
+        ),
+      ),
     ],
   );
 });
+
+/// /market — market prices pushed as a standalone page (the same screen is
+/// also embedded in the farmer and buyer bottom navs).
+class _MarketPage extends StatelessWidget {
+  const _MarketPage();
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text(AppLocalizations.of(context).marketTitle)),
+      body: const MarketScreen(),
+    );
+  }
+}

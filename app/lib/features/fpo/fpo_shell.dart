@@ -3,9 +3,10 @@ import 'package:flutter/material.dart';
 import '../../core/widgets/role_shell.dart';
 import '../../l10n/app_localizations.dart';
 import '../shared/profile_tab.dart';
+import 'screens/fpo_dispatch_tab.dart';
 import 'screens/fpo_orders_tab.dart';
 
-/// FPO shell: Orders / Profile.
+/// FPO shell: Orders / Dispatch / Profile.
 class FpoShell extends StatelessWidget {
   const FpoShell({super.key});
 
@@ -19,6 +20,12 @@ class FpoShell extends StatelessWidget {
           selectedIcon: Icons.receipt_long_rounded,
           label: t.navOrders,
           body: const FpoOrdersTab(),
+        ),
+        ShellTab(
+          icon: Icons.local_shipping_outlined,
+          selectedIcon: Icons.local_shipping_rounded,
+          label: t.navDispatch,
+          body: const FpoDispatchTab(),
         ),
         ShellTab(
           icon: Icons.person_outline_rounded,

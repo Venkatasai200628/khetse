@@ -362,6 +362,336 @@ class AppLocalizationsEn extends AppLocalizations {
       'Shipment and dispatch endpoints are the next build phase (ANALYSIS.md §9, Phase 4). This dashboard shows your real profile and will pick up trips the moment those endpoints ship.';
 
   @override
+  String get shipmentDetailTitle => 'Delivery run';
+
+  @override
+  String get shipmentStarted => 'Run started — safe driving!';
+
+  @override
+  String get stopCompleted => 'Stop completed';
+
+  @override
+  String get shipmentStartRun => 'Start run';
+
+  @override
+  String get shipmentStopsTitle => 'Stops, in order';
+
+  @override
+  String shipmentStopCount(int count) {
+    return '$count stops';
+  }
+
+  @override
+  String shipmentPendingCount(int count) {
+    return '$count pending';
+  }
+
+  @override
+  String get shipmentDistance => 'Distance';
+
+  @override
+  String get shipmentReadOnlyNote =>
+      'You dispatched this run. The assigned driver completes each stop — stops are read-only for you.';
+
+  @override
+  String get shipmentCratesTitle => 'Crate manifest';
+
+  @override
+  String get shipmentNoCrates => 'No crate codes were returned for this run.';
+
+  @override
+  String get stopPickup => 'PICKUP';
+
+  @override
+  String get stopDelivery => 'DELIVERY';
+
+  @override
+  String get stopComplete => 'Complete stop';
+
+  @override
+  String get stopReportProblem => 'Report problem';
+
+  @override
+  String get stopCompleteTitle => 'Complete this stop';
+
+  @override
+  String get stopMethodQr => 'Scan QR (demo — paste the token)';
+
+  @override
+  String get stopMethodCode => 'Enter crate code';
+
+  @override
+  String get stopScanTokenLabel => 'Scanned token';
+
+  @override
+  String get stopScanTokenHint => 'e.g. KR-2026-0042';
+
+  @override
+  String get stopCrateCodeLabel => 'Crate code';
+
+  @override
+  String get stopCrateCodeHint => 'e.g. CR-1007';
+
+  @override
+  String get cancelLabel => 'Cancel';
+
+  @override
+  String get stopConfirmHandoff => 'Confirm handoff';
+
+  @override
+  String get stopFailTitle => 'Report a problem';
+
+  @override
+  String get stopFailReason => 'What went wrong?';
+
+  @override
+  String get stopFailConfirm => 'Report';
+
+  @override
+  String get shipmentLoadFailed => 'This delivery run could not be loaded.';
+
+  @override
+  String get fpoDispatchTitle => 'Dispatch';
+
+  @override
+  String get fpoDispatchSubtitle =>
+      'Group confirmed member orders into a shared delivery run with an optional driver.';
+
+  @override
+  String get fpoSelectOrders => 'Confirmed member orders';
+
+  @override
+  String get fpoNoConfirmedOrders =>
+      'No confirmed orders to dispatch right now. Orders appear here once buyers confirm payment.';
+
+  @override
+  String get fpoDriverOptional => 'Assign driver (optional)';
+
+  @override
+  String get fpoDriverUnassigned => 'No driver yet';
+
+  @override
+  String get fpoCreateRun => 'Create run';
+
+  @override
+  String fpoCreateRunSelected(int count) {
+    return 'Create run with $count orders';
+  }
+
+  @override
+  String get fpoRunCreated => 'Delivery run created';
+
+  @override
+  String get navDispatch => 'Dispatch';
+
+  @override
+  String get navMarket => 'Market';
+
+  @override
+  String get marketTitle => 'Market prices';
+
+  @override
+  String get marketSubtitle =>
+      'AI price guidance from recent market observations — a transparent model with its provenance shown, never a black box.';
+
+  @override
+  String get marketCommodity => 'Commodity';
+
+  @override
+  String get marketDistrict => 'District (optional)';
+
+  @override
+  String get marketDistrictHint => 'e.g. Rangareddy';
+
+  @override
+  String get marketGetPrice => 'Get price';
+
+  @override
+  String marketRangeLabel(String unit) {
+    return 'Recommended $unit price (min – typical – max)';
+  }
+
+  @override
+  String marketPerUnit(String unit) {
+    return 'per $unit';
+  }
+
+  @override
+  String get marketPerQuintal => 'per quintal';
+
+  @override
+  String get marketPerKgPrefix => 'That is about';
+
+  @override
+  String get marketBenchmark => 'Benchmark market';
+
+  @override
+  String get marketObserved => 'Observed on';
+
+  @override
+  String get marketSource => 'Source';
+
+  @override
+  String get marketWhyThisRange => 'Why this range?';
+
+  @override
+  String get marketNoDataTitle => 'No data for this selection yet';
+
+  @override
+  String get marketNoDataMessage =>
+      'The model has no recent observations for this commodity and district. Try another district, or check back after the next market run.';
+
+  @override
+  String get marketPickCommodity => 'Pick a commodity';
+
+  @override
+  String get marketPickCommodityMessage =>
+      'Choose a crop (and optionally a district), then get the recommended price range.';
+
+  @override
+  String get retryLabel => 'Retry';
+
+  @override
+  String get voiceTitle => 'Speak to sell';
+
+  @override
+  String get voiceEntryButton => 'Speak to Sell';
+
+  @override
+  String get voiceSubtitle =>
+      'Say what you harvested and at what price — we draft the listing, you confirm it.';
+
+  @override
+  String get voiceDemoBanner =>
+      'Demo mode: speech is simulated — pick a sample phrase or type what you would say.';
+
+  @override
+  String get voiceSampleLabel => 'Sample phrases';
+
+  @override
+  String get voiceSampleEn => '10 kg tomato at 20 rupees per kg';
+
+  @override
+  String get voiceSampleTe => '5 క్వింటాల్ టమాటా రూ 2000';
+
+  @override
+  String get voiceFieldLabel => 'What would you say?';
+
+  @override
+  String get voiceHint => 'e.g. 10 kg tomato at 20 rupees per kg';
+
+  @override
+  String get voiceDraftButton => 'Draft my listing';
+
+  @override
+  String get voiceHeardYouSay => 'Heard you say';
+
+  @override
+  String get voiceNeedsCheck => 'please check';
+
+  @override
+  String get voiceConfirmTitle => 'Confirm your listing';
+
+  @override
+  String get voiceConfirmNote =>
+      'Check every highlighted field — the extraction is not always sure. Nothing is published until you confirm.';
+
+  @override
+  String get voiceChooseCommodity => 'Choose the crop';
+
+  @override
+  String get voiceAvailableFrom => 'Available from';
+
+  @override
+  String get voicePublished => 'Listing published';
+
+  @override
+  String get navDemand => 'Demand';
+
+  @override
+  String get rfqTitle => 'Business demand';
+
+  @override
+  String get rfqSubtitle =>
+      'Post what you need; farmers quote against your request, and you accept the best offer.';
+
+  @override
+  String get rfqCreateTitle => 'New request';
+
+  @override
+  String rfqMaxPriceLabel(String unit) {
+    return 'Max price per $unit (₹)';
+  }
+
+  @override
+  String get rfqEnterMaxPrice => 'Enter the maximum price you will pay';
+
+  @override
+  String get rfqNeededBy => 'Needed by';
+
+  @override
+  String get rfqNeededByEmpty => 'Pick a date';
+
+  @override
+  String get rfqSubmit => 'Post request';
+
+  @override
+  String get rfqPosted => 'Request posted — farmers can quote now';
+
+  @override
+  String get rfqMyRequests => 'My requests';
+
+  @override
+  String get rfqNoRequestsTitle => 'No requests yet';
+
+  @override
+  String get rfqNoRequestsMessage =>
+      'Post your first request above and farmers around you can start quoting.';
+
+  @override
+  String rfqOffersCount(int count) {
+    return '$count offers';
+  }
+
+  @override
+  String get rfqNoOffers =>
+      'No offers yet — farmers see this request in their Open demand feed.';
+
+  @override
+  String get rfqAccept => 'Accept';
+
+  @override
+  String get rfqOpenDemand => 'Open demand';
+
+  @override
+  String get rfqOpenDemandSubtitle =>
+      'Businesses are looking for produce — quote your price against a request.';
+
+  @override
+  String get rfqNoOpenDemandTitle => 'No open requests';
+
+  @override
+  String get rfqNoOpenDemandMessage =>
+      'When a business posts what it needs, it shows up here for you to quote.';
+
+  @override
+  String get rfqQuote => 'Quote';
+
+  @override
+  String get rfqQuoteTitle => 'Quote this request';
+
+  @override
+  String rfqYourPriceLabel(String unit) {
+    return 'Your price per $unit (₹)';
+  }
+
+  @override
+  String get rfqSubmitQuote => 'Send quote';
+
+  @override
+  String get rfqQuoted => 'Quote sent';
+
+  @override
   String get fpoOrdersTitle => 'Member orders';
 
   @override

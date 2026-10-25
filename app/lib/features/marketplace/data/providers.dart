@@ -45,6 +45,14 @@ final farmerOrdersProvider =
   return api.farmerOrders(pageSize: 50);
 });
 
+/// Confirmed member orders only — GET /orders/farmer?status=confirmed.
+/// Feeds the FPO dispatch (shipment creation) flow.
+final confirmedFarmerOrdersProvider =
+    FutureProvider.autoDispose<OrderPage>((ref) {
+  final api = ref.watch(orderApiProvider);
+  return api.farmerOrders(status: 'confirmed', pageSize: 50);
+});
+
 /// Buyer orders — GET /orders/mine.
 final buyerOrdersProvider = FutureProvider.autoDispose<OrderPage>((ref) {
   final api = ref.watch(orderApiProvider);
