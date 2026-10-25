@@ -32,7 +32,9 @@ class Shipment {
   factory Shipment.fromJson(Map<String, dynamic> json) => Shipment(
         id: json['id'] as String,
         status: (json['status'] ?? 'draft') as String,
-        distanceKm: (json['distance_km'] as num?)?.toDouble(),
+        // The backend names the solved route length route_distance_km.
+        distanceKm: ((json['route_distance_km'] ?? json['distance_km']) as num?)
+            ?.toDouble(),
         originLabel: json['origin_label'] as String?,
         destinationLabel: json['destination_label'] as String?,
         driverId: json['driver_id'] as String?,
@@ -61,7 +63,8 @@ class Shipment {
 
   bool get canStart {
     final s = status.toLowerCase();
-    return s == 'draft' || s == 'ready' || s == 'scheduled';
+    // Backend lifecycle: planned (created) -> assigned -> in_progress.
+    return s == 'planned' || s == 'assigned' || s == 'draft' || s == 'ready';
   }
 
   static String _trim(double v) =>
@@ -98,7 +101,10 @@ class ShipmentStop {
   factory ShipmentStop.fromJson(Map<String, dynamic> json) => ShipmentStop(
         id: json['id'] as String,
         sequence: ((json['sequence'] ?? json['seq'] ?? 0) as num).toInt(),
-        kind: (json['kind'] ?? json['type'] ?? 'delivery') as String,
+        // The backend field is stop_type; accept kind/type defensively.
+        kind:
+            ((json['stop_type'] ?? json['kind'] ?? json['type']) ?? 'delivery')
+                as String,
         label: (json['label'] ?? '') as String,
         status: (json['status'] ?? 'pending') as String,
         address: json['address'] as String?,
@@ -149,7 +155,8 @@ class DriverOption {
   final String? status;
 
   factory DriverOption.fromJson(Map<String, dynamic> json) => DriverOption(
-        id: json['id'] as String,
+        // GET /drivers keys the identity as user_id; accept id defensively.
+        id: (json['id'] ?? json['user_id']) as String,
         name: (json['full_name'] ?? json['name']) as String?,
         phone: json['phone'] as String?,
         status: json['status'] as String?,

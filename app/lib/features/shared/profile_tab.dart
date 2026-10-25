@@ -131,23 +131,22 @@ class ProfileTab extends ConsumerWidget {
               padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
               child: Column(
                 children: [
-                  Row(
-                    children: [
-                      Expanded(
-                        child: Text(
-                          t.apiEndpoint,
-                          style: const TextStyle(
-                              fontSize: 13, color: AppColors.textSecondary),
-                        ),
-                      ),
-                      Text(
-                        AppConfig.apiBaseUrl,
-                        style: const TextStyle(
-                            fontSize: 12.5,
-                            fontWeight: FontWeight.w600,
-                            color: AppColors.textPrimary),
-                      ),
-                    ],
+                  Text(
+                    t.apiEndpoint,
+                    style: const TextStyle(
+                        fontSize: 13, color: AppColors.textSecondary),
+                  ),
+                  const SizedBox(height: 4),
+                  // Long https URLs must wrap, not force the card to overflow.
+                  Text(
+                    AppConfig.apiBaseUrl,
+                    softWrap: true,
+                    overflow: TextOverflow.ellipsis,
+                    maxLines: 2,
+                    style: const TextStyle(
+                        fontSize: 12.5,
+                        fontWeight: FontWeight.w600,
+                        color: AppColors.textPrimary),
                   ),
                 ],
               ),

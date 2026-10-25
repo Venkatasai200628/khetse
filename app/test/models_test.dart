@@ -220,4 +220,59 @@ void main() {
       expect(offer.isPending, isFalse);
     });
   });
+
+  // Regression coverage for the GUI-testing round (2026-10-25): the backend
+  // payload keys differ from what the models originally read.
+  group('shipment payload regressions', () {
+    test('DriverOption accepts the user_id key /drivers actually sends', () {
+      final driver = DriverOption.fromJson({
+        'user_id': 'ef546cc0-8c86-42cc',
+        'full_name': 'Suresh Yadav',
+        'is_available': true,
+        'vehicle': null,
+      });
+      expect(driver.id, 'ef546cc0-8c86-42cc');
+      expect(driver.label, 'Suresh Yadav');
+    });
+
+  test('ShipmentStop reads stop_type (pickup stays pickup)', () {
+    final stop = ShipmentStop.fromJson({
+      'id': 's1',
+      'stop_type': 'pickup',
+      'sequence': 1,
+      'status': 'pending',
+      'label': 'Kothur, Ranga Reddy',
+      'order_id': null,
+    });
+    expect(stop.isPickup, isTrue);
+    final drop = ShipmentStop.fromJson({
+      'id': 's2',
+      'stop_type': 'delivery',
+      'sequence': 2,
+      'status': 'pending',
+      'label': 'Buyer · Ranga Reddy',
+    });
+    expect(drop.isPickup, isFalse);
+  });
+
+  test('Shipment reads route_distance_km and canStart covers assigned', () {
+    final run = Shipment.fromJson({
+      'id': 'sh1',
+      'status': 'assigned',
+      'route_distance_km': 12.5,
+      'stops': [
+        {
+          'id': 's1',
+          'stop_type': 'pickup',
+          'sequence': 1,
+          'status': 'pending',
+          'label': 'Farm',
+        }
+      ],
+    });
+    expect(run.distanceLabel, '12.5 km');
+    expect(run.canStart, isTrue);
+    expect(run.stops.first.isPickup, isTrue);
+  });
+});
 }

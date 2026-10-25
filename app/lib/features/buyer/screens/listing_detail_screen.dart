@@ -146,7 +146,8 @@ class _ListingDetailScreenState extends ConsumerState<ListingDetailScreen> {
                   const SizedBox(height: 16),
                   _InfoTile(
                     icon: Icons.inventory_2_outlined,
-                    label: '${t.available}: ${listing.availableLabel}',
+                    // availableLabel already reads "385 kg available" — no prefix.
+                    label: listing.availableLabel,
                   ),
                   const SizedBox(height: 8),
                   if (listing.qualityGrade != 'ungraded')
