@@ -37,9 +37,20 @@ Notes:
 
 ## Backend — Hugging Face Spaces (alternative free host)
 
-Create a Space with the Docker SDK, copy `backend/` (Dockerfile included) into it, and add the
-`DATABASE_URL`/`JWT_SECRET` secrets in the Space settings. Free CPU Spaces sleep after inactivity
-and have no persistent disk — fine for demos, not for data you want to keep.
+**Update (2026-10-25):** HF now requires a **PRO subscription** for Docker and Gradio Spaces on
+free cpu-basic hardware (the API returns `402 Payment Required`). Only Static Spaces are free,
+and those cannot run a backend. If you have PRO, the definition in `deploy/hf-space/`
+(README metadata + Dockerfile) works as-is:
+
+```bash
+# assemble the staging dir (copies backend/app + requirements.txt alongside the Dockerfile)
+bash deploy/hf-space/build.sh
+hf repo create <user>/khetse-api --repo-type space --space-sdk docker
+hf upload <user>/khetse-api deploy/hf-space/staging . --repo-type space
+```
+
+The Dockerfile listens on port 7860, creates the schema on embedded SQLite, and re-seeds the
+labelled demo dataset at every startup.
 
 ## Interim demo tunnel (zero setup)
 
