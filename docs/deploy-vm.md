@@ -4,6 +4,32 @@ The production stack is **Postgres + Redis + FastAPI behind Caddy** (automatic H
 defined in [`docker-compose.prod.yml`](../docker-compose.prod.yml). Only Caddy's ports
 80/443 are published; the database and API are internal to the compose network.
 
+## Option A0 — Azure for Students (what this repo's VM uses)
+
+Azure for Students gives $100/12 months, no card. Real-world notes from our deployment:
+
+- The subscription enforces a **region allow-list policy** ("Allowed resource deployment
+  regions"). Ours permits only: `malaysiawest, eastasia, koreacentral, indiasouthcentral,
+  uaenorth`. Read yours with:
+  `az policy assignment list --query "[].parameters.listOfAllowedLocations.value" -o json`
+- azure-cli 2.90 `az vm create` crashes with "The content for this response was already
+  consumed" (known bug). Workaround: deploy via **ARM template**
+  ([`deploy/azure/vm.json`](azure/vm.json)) — `az deployment group create` uses a code path
+  that works:
+  ```bash
+  az group create -n khetse-rg -l indiasouthcentral
+  az deployment group create -g khetse-rg --template-file deploy/azure/vm.json \
+    --parameters "sshPublicKey=$(cat ~/.ssh/id_ed25519.pub)" "dnsLabel=khetse-sih"
+  ```
+  The template creates a **Standard** static public IP with a DNS label, so the VM gets a
+  stable `<label>.<region>.cloudapp.azure.com` name — that suffix is on the Public Suffix
+  List, so Caddy obtains a real Let's Encrypt certificate with **no domain purchase**.
+- Add 2 GB swap before building on B1ms (1 vCPU / 2 GB): `fallocate -l 2G /swapfile && mkswap && swapon`.
+- Then run the bootstrap: `sudo bash deploy/vm/bootstrap.sh <fqdn>`.
+- Cost burn: B1ms ~$15/mo + Standard IP ~$3/mo + disk ~$2/mo ≈ **$20/month → ~5 months of credit**.
+  Deallocate when idle: `az vm deallocate -g khetse-rg -n khetse-vm` (stops billing; public IP
+  keeps charging ~$3/mo while allocated).
+
 ## Option A — Oracle Cloud "Always Free" VM (genuinely $0 forever)
 
 1. Sign up at [oracle.com/cloud/free](https://www.oracle.com/cloud/free/) (needs a card for
