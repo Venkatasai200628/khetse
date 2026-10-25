@@ -26,6 +26,14 @@ class Base(DeclarativeBase):
     metadata = MetaData(naming_convention=NAMING_CONVENTION)
 
 
+def _normalise_driver(url: str) -> str:
+    """Managed Postgres providers (Render, Neon, Supabase, Heroku) hand out
+    bare postgresql:// URLs; SQLAlchemy needs the DBAPI dialect named."""
+    if url.startswith("postgresql://"):
+        return url.replace("postgresql://", "postgresql+psycopg2://", 1)
+    return url
+
+
 def _build_engine(url: str):
     if url.startswith("sqlite"):
         engine = create_engine(url, connect_args={"check_same_thread": False})
@@ -37,7 +45,7 @@ def _build_engine(url: str):
             cursor.close()
 
         return engine
-    return create_engine(url, pool_pre_ping=True, pool_size=5, max_overflow=10)
+    return create_engine(_normalise_driver(url), pool_pre_ping=True, pool_size=5, max_overflow=10)
 
 
 settings = get_settings()

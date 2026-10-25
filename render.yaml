@@ -1,0 +1,42 @@
+services:
+  # KhetSe FastAPI backend — free-tier friendly container deployment.
+  # One click: push this repo to GitHub, then in Render "New +" → "Blueprint"
+  # and select the repository. Render reads this file.
+  - type: web
+    name: khetse-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+    envVars:
+      - key: ENV
+        value: demo
+      - key: DEMO_MODE
+        value: "true"
+      - key: LOG_LEVEL
+        value: INFO
+      # Render injects DATABASE_URL from the database below; it is a
+      # postgresql:// URL, so translate to the SQLAlchemy dialect.
+      - key: DATABASE_URL
+        fromDatabase:
+          name: khetse-db
+          property: connectionString
+      # The app normalises bare postgresql:// URLs to postgresql+psycopg2://
+      # itself (backend/app/db/session.py), so no manual rewrite is needed.
+      - key: JWT_SECRET
+        generateValue: true
+      - key: CORS_ORIGINS
+        value: "*" # demo only — set your frontend origin in production
+      - key: PAYMENT_PROVIDER
+        value: mock
+      - key: SMS_PROVIDER
+        value: mock
+
+databases:
+  # Free PostgreSQL (expires after 30 days on the free plan — recreate or
+  # upgrade for a long-lived demo, or point DATABASE_URL at Neon/Supabase).
+  - name: khetse-db
+    plan: free
+    databaseName: khetse
+    user: khetse
