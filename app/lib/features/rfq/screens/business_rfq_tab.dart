@@ -454,6 +454,9 @@ class _OfferRow extends StatelessWidget {
                       backgroundColor: AppColors.primary,
                       foregroundColor: Colors.white,
                       padding: const EdgeInsets.symmetric(horizontal: 14),
+                      // Bounded minimum: the theme's full-width minimum would
+                      // be unbounded inside this Row (no Expanded here).
+                      minimumSize: const Size(0, 44),
                     ),
                     onPressed: onAccept,
                     child: Text(t.rfqAccept),

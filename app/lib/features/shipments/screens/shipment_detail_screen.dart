@@ -447,14 +447,18 @@ class _StopTile extends StatelessWidget {
                   ),
                 ),
                 const SizedBox(width: 10),
-                OutlinedButton.icon(
-                  onPressed: busy ? null : onFail,
-                  style: OutlinedButton.styleFrom(
-                    foregroundColor: AppColors.danger,
-                    padding: const EdgeInsets.symmetric(vertical: 10),
+                // Expanded: the theme's full-width button minimum would
+                // otherwise be laid out with unbounded width inside this Row.
+                Expanded(
+                  child: OutlinedButton.icon(
+                    onPressed: busy ? null : onFail,
+                    style: OutlinedButton.styleFrom(
+                      foregroundColor: AppColors.danger,
+                      padding: const EdgeInsets.symmetric(vertical: 10),
+                    ),
+                    icon: const Icon(Icons.report_problem_rounded, size: 18),
+                    label: Text(t.stopReportProblem),
                   ),
-                  icon: const Icon(Icons.report_problem_rounded, size: 18),
-                  label: Text(t.stopReportProblem),
                 ),
               ],
             ),

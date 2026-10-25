@@ -79,8 +79,12 @@ class FarmerHomeTab extends ConsumerWidget {
               style: FilledButton.styleFrom(
                 backgroundColor: AppColors.harvest,
                 foregroundColor: Colors.white,
-                textStyle: const TextStyle(
-                    fontSize: 16.5, fontWeight: FontWeight.w800),
+                // Inherit the brand font from the theme — an overriding bare
+                // TextStyle would drop the Inter family entirely.
+                textStyle: Theme.of(context)
+                    .textTheme
+                    .labelLarge
+                    ?.copyWith(fontSize: 16.5, fontWeight: FontWeight.w800),
               ),
               onPressed: () => context.push('/farmer/voice'),
               icon: const Icon(Icons.mic_rounded, size: 26),
