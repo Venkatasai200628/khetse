@@ -1,0 +1,11 @@
+# KhetSe production deployment — one Caddy in front, nothing else exposed.
+# The domain comes from the KHEETSE_DOMAIN env var (see docker-compose.prod.yml).
+# Caddy obtains and renews the HTTPS certificate automatically (Let's Encrypt),
+# which requires: DNS A-record -> this VM, and ports 80 + 443 open.
+
+{$KHEETSE_DOMAIN} {
+	encode gzip
+
+	# Everything is served by the FastAPI app: /health, /docs, /openapi.json, /api/v1/*
+	reverse_proxy backend:8000
+}

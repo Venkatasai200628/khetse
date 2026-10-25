@@ -1,0 +1,67 @@
+# KhetSe production stack for a VM.
+# Usage (on the VM, from the repo root):  docker compose -f docker-compose.prod.yml up -d --build
+#
+# Requires in .env (see deploy/vm/bootstrap.sh which generates it):
+#   POSTGRES_PASSWORD=<random>   JWT_SECRET=<random>   KHEETSE_DOMAIN=api.example.com
+#
+# Security posture: only Caddy's 80/443 are published. Postgres and Redis are
+# reachable solely inside the compose network; the API has no public port.
+
+name: khetse
+
+services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_USER: khetse
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env}
+      POSTGRES_DB: khetse
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U khetse -d khetse"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+
+  backend:
+    build: ./backend
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg2://khetse:${POSTGRES_PASSWORD}@db:5432/khetse
+      REDIS_URL: redis://redis:6379/0
+      JWT_SECRET: ${JWT_SECRET:?set JWT_SECRET in .env}
+      # backend config field is ENV; KHEETSE_ENV lets hosts avoid the generic name
+      ENV: ${KHEETSE_ENV:-demo}
+      DEMO_MODE: ${DEMO_MODE:-true}
+      CORS_ORIGINS: ${CORS_ORIGINS:-*}
+      LOG_LEVEL: INFO
+    depends_on:
+      db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  caddy:
+    image: caddy:2-alpine
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      KHEETSE_DOMAIN: ${KHEETSE_DOMAIN:?set KHEETSE_DOMAIN in .env}
+    volumes:
+      - ./deploy/vm/Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - backend
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:
