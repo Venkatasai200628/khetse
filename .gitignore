@@ -57,3 +57,11 @@ desktop.ini
 *.log
 logs/
 goldens/
+
+# Local toolchains relocated inside the repo by the user — never commit.
+android-sdk/
+flutter/
+jdk-17/
+khetse-space/
+khetse-web-deploy/
+py/
